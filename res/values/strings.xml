@@ -2,6 +2,9 @@
 <resources>
 
     <string name="app_name">Agenda</string>
+    <string name="contactoNuevo">Contacto Nuevo</string>
+    <string name="title_activity_agregar_contactos">AgregarContactos</string>
     <string name="action_settings">Settings</string>
+    
 
 </resources>
