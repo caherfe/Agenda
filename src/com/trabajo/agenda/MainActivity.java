@@ -1,15 +1,13 @@
 package com.trabajo.agenda;
 
 import android.os.Bundle;
-import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.view.Menu;
-import android.widget.ArrayAdapter;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
@@ -48,4 +46,15 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()){
+			case R.id.menuContactoNuevo:
+                Intent intent = new Intent(MainActivity.this, AgregarContactos.class);
+                startActivity(intent);
+				break;
+			//A–adir m‡s opciones al menœ de la actividad principal si hay
+		}
+		return super.onOptionsItemSelected(item);
+	}
 }
