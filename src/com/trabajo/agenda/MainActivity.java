@@ -31,7 +31,8 @@ public class MainActivity extends Activity {
 		
 		Cursor cursor = null;
 		cursor= bdConexion.obtenerContactos();
-		SimpleCursorAdapter adaptador = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, cursor, new String[]{ContactosSQLiteHelper.ID_NOMBRE}, new int[]{android.R.id.text1},0);
+		AdaptadorContactos adaptador = new AdaptadorContactos(this, R.layout.listitem_contacto, cursor, new String[]{ContactosSQLiteHelper.ID_NOMBRE}, new int[]{android.R.id.text1},0);
+		//SimpleCursorAdapter adaptador = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, cursor, new String[]{ContactosSQLiteHelper.ID_NOMBRE}, new int[]{android.R.id.text1},0);
 	    lstContactos.setAdapter(adaptador);
 		
 	    bdConexion.cerrar();
