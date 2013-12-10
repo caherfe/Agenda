@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
 		ContactosSQLiteHelper bdConexion = new ContactosSQLiteHelper(this);
 		bdConexion.abrir();
 		
-		/*for(int i=1; i<=10; i++){
+		/*for(int i=1; i<=30; i++){
 			bdConexion.insertarContacto("Nombre "+i, "Apellidos "+i);
 		}*/
 		
