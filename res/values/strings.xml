@@ -12,10 +12,12 @@
     <string name="sexo">Sexo</string>
     <string name="sexoHombre">Hombre</string>
     <string name="sexoMujer">Mujer</string>
+    <string name="aficiones">Aficiones</string>
     <string name="aficionDeportes">Deportes</string>
     <string name="aficionCocina">Cocina</string>
     <string name="aficionInformatica">Informática</string>
-    <string name="btnOk">Ok</string>
+    <string name="btnAceptar">Aceptar</string>
+    <string name="btnCancelar">Cancelar</string>
     <string name="menuEditar">Editar</string>
     <string name="menuBorrar">Borrar</string>
     <string name="title_activity_detalles_contacto">DetallesContactoActivity</string>

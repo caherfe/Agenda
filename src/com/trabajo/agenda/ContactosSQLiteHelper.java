@@ -101,14 +101,18 @@ public class ContactosSQLiteHelper extends SQLiteOpenHelper{
 		
 	}
 
-	/*public Contacto getContacto(int id){
+	public Contacto getContacto(int id){
 		String sql = "SELECT * FROM " + TABLA_NOMBRE + " WHERE " + ID_FILA + " = '" + id + "'";
 		Cursor cursor = baseDatos.rawQuery(sql, null);
 		cursor.moveToFirst();
-		Contacto contacto = new Contacto(cursor.getString(1), cursor.getString(2));
+		Boolean dep = (cursor.getInt(6) == 1)? true : false;
+		Boolean coc = (cursor.getInt(7) == 1)? true : false;
+		Boolean inf = (cursor.getInt(8) == 1)? true : false;
+		Contacto contacto = new Contacto(cursor.getString(1), cursor.getString(2), cursor.getString(3),
+				cursor.getString(4), cursor.getString(5).charAt(0), dep, coc, inf);
 		
 		return contacto;
-	}*/
+	}
 		
 	
 	/*public Cursor buscarContactoPorId(int num){

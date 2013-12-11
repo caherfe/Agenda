@@ -46,11 +46,11 @@ public class MainActivity extends Activity {
 	    registerForContextMenu(lstContactos);
 	    
 	    //Cuando hagamos clic en algœn elemento de la lista...
-	    /*lstContactos.setOnItemClickListener(new OnItemClickListener() {
+	    lstContactos.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-				bdConexion.abrir();
+				bdConexion.abrirLectura();
 				Contacto contacto = bdConexion.getContacto((int)id);
 				bdConexion.cerrar();
 				
@@ -60,6 +60,12 @@ public class MainActivity extends Activity {
                 Bundle b = new Bundle();
                 b.putString("nombre", contacto.getNombre());
                 b.putString("apellidos", contacto.getApellidos());
+                b.putString("telefono", contacto.getTelefono());
+                b.putString("email", contacto.getEmail());
+                b.putChar("sexo", contacto.getSexo());
+                b.putBoolean("deportes", contacto.isDeportes());
+                b.putBoolean("cocina", contacto.isCocina());
+                b.putBoolean("informatica", contacto.isInformatica());
 
                 //A–adimos la informaci—n al intent
                 intent.putExtras(b);
@@ -67,7 +73,7 @@ public class MainActivity extends Activity {
                 //Iniciamos la nueva actividad
                 startActivity(intent);
 			}
-		});*/
+		});
 	    
 	    
 	    

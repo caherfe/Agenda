@@ -18,7 +18,7 @@ public class AgregarContactosActivity extends Activity {
 	private EditText txtNombre, txtApellidos, txtTelefono, txtEmail;
 	private RadioGroup rdSexo;
 	private CheckBox chkDeportes, chkCocina, chkInformatica;
-	private Button btnOk;
+	private Button btnAceptar, btnCancelar;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +34,10 @@ public class AgregarContactosActivity extends Activity {
 		chkDeportes = (CheckBox) this.findViewById(R.id.chkDeportes);
 		chkCocina = (CheckBox) this.findViewById(R.id.chkCocina);
 		chkInformatica = (CheckBox) this.findViewById(R.id.chkInformatica);
-		btnOk = (Button)this.findViewById(R.id.btnOk);
+		btnAceptar = (Button)this.findViewById(R.id.btnAceptar);
+		btnCancelar = (Button)this.findViewById(R.id.btnCancelar);
 		
-		btnOk.setOnClickListener(new OnClickListener(){
+		btnAceptar.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View arg0) {
@@ -54,6 +55,16 @@ public class AgregarContactosActivity extends Activity {
 				Intent intent = new Intent(AgregarContactosActivity.this, MainActivity.class);
 	            startActivity(intent);
 			}
+		});
+		
+		btnCancelar.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent(AgregarContactosActivity.this, MainActivity.class);
+	            startActivity(intent);
+			}
+			
 		});
 	}
 
