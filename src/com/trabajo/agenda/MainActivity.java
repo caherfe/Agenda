@@ -34,11 +34,19 @@ public class MainActivity extends Activity {
 		//Base de datos
 		bdConexion = new ContactosSQLiteHelper(this);
 		
+//		/*Descomentar este c—digo para rellenar la base de datos inicialmente*/
+//		bdConexion.abrir();
+//		for(int i=1; i<=10; i++){
+//			bdConexion.insertarContacto("Nombre "+i, "Apellidos "+i, "Telefono"+i, "nombre"+i+"@email.com",
+//					'H', true, true, true);
+//		}
+//		bdConexion.cerrar();
+		
 		//Asociamos el menœ contextual a la lista
 	    registerForContextMenu(lstContactos);
 	    
 	    //Cuando hagamos clic en algœn elemento de la lista...
-	    lstContactos.setOnItemClickListener(new OnItemClickListener() {
+	    /*lstContactos.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> a, View v, int position, long id) {
@@ -59,7 +67,7 @@ public class MainActivity extends Activity {
                 //Iniciamos la nueva actividad
                 startActivity(intent);
 			}
-		});
+		});*/
 	    
 	    
 	    
@@ -69,15 +77,9 @@ public class MainActivity extends Activity {
 	}
 	
 	public void actualizarCursor(){
-		bdConexion.abrir();
-		
-		/*for(int i=1; i<=30; i++){
-			bdConexion.insertarContacto("Nombre "+i, "Apellidos "+i);
-		}*/
-
+		bdConexion.abrirLectura();
 		cursor= bdConexion.obtenerContactos();
 		adaptador = new AdaptadorContactos(this, R.layout.listitem_contacto, cursor, new String[]{}, new int[]{},0);
-		//SimpleCursorAdapter adaptador = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, cursor, new String[]{ContactosSQLiteHelper.ID_NOMBRE}, new int[]{android.R.id.text1},0);
 		lstContactos.setAdapter(adaptador);
 		bdConexion.cerrar();		
 	}
@@ -124,7 +126,7 @@ public class MainActivity extends Activity {
 		            //lblMensaje.setText("Etiqueta: Opcion 1 pulsada!");
 		            return true;
 		        case R.id.menuBorrar:
-		            bdConexion.abrir();
+		            bdConexion.abrirEscritura();
 		            bdConexion.eliminarContacto((int)info.id);
 		            bdConexion.cerrar();
 		            this.actualizarCursor();

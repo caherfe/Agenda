@@ -11,6 +11,12 @@ public class ContactosSQLiteHelper extends SQLiteOpenHelper{
 	public static final String ID_FILA = "_id";
 	public static final String ID_NOMBRE = "nombre";
 	public static final String ID_APELLIDOS = "apellidos";
+	public static final String ID_EMAIL = "email";
+	public static final String ID_TELEFONO = "telefono";
+	public static final String ID_SEXO = "sexo";
+	public static final String ID_DEPORTES = "deportes";
+	public static final String ID_COCINA = "cocina";
+	public static final String ID_INFORMATICA = "informatica";
 	
 	private static final String TABLA_NOMBRE = "contactos";
 	private static final String BASEDATOS_NOMBRE = "bdContactos.db";
@@ -32,7 +38,13 @@ public class ContactosSQLiteHelper extends SQLiteOpenHelper{
 		String sqlCreate = "CREATE TABLE " + TABLA_NOMBRE +"("
 				+ ID_FILA + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 				+ ID_NOMBRE + " TEXT NOT NULL, "
-				+ ID_APELLIDOS + " TEXT NOT NULL);";
+				+ ID_APELLIDOS + " TEXT NOT NULL, "
+				+ ID_TELEFONO + " TEXT NOT NULL, "
+				+ ID_EMAIL + " TEXT NOT NULL, "
+				+ ID_SEXO + " TEXT NOT NULL, " //H o M
+				+ ID_DEPORTES + " INTEGER NOT NULL, " //1 checked 0 unchecked
+				+ ID_COCINA + " INTEGER NOT NULL, " //1 checked 0 unchecked
+				+ ID_INFORMATICA + " INTEGER NOT NULL);"; //1 checked 0 unchecked
 		db.execSQL(sqlCreate);
 		
 	}
@@ -51,16 +63,29 @@ public class ContactosSQLiteHelper extends SQLiteOpenHelper{
         onCreate(db);
 	}
 	
-	public void abrir(){
+	public void abrirEscritura(){
 		baseDatos = getWritableDatabase();		
+	}
+	
+	public void abrirLectura(){
+		baseDatos = getReadableDatabase();
 	}
 	
 	public void cerrar(){
 		close();
 	}
 	
-	public void insertarContacto(String nombre, String apellidos){
-		String sql = "INSERT INTO " + TABLA_NOMBRE +  "(" + ID_NOMBRE + ", " + ID_APELLIDOS + ") VALUES ('" + nombre + "', '" + apellidos + "')";
+	public void insertarContacto(String nombre, String apellidos, String telefono, String email, char sexo, boolean deportes, boolean cocina, boolean informatica){
+		//Convertimos a enteros los booleanos
+		int dep = (deportes)? 1 : 0;
+		int coc = (cocina)? 1 : 0;
+		int inf = (informatica)? 1 : 0;
+		
+		String sql = "INSERT INTO " + TABLA_NOMBRE +  "(" + ID_NOMBRE + ", " + ID_APELLIDOS + ", " 
+				+ ID_TELEFONO + ", " + ID_EMAIL + ", " + ID_SEXO + ", " + ID_DEPORTES + ", " 
+				+ ID_COCINA + ", " + ID_INFORMATICA + ") VALUES ('" + nombre + "', '" + apellidos + "', '" 
+				+ telefono + "', '" + email + "', '" + sexo + "', '" + dep + "', '" 
+				+ coc + "', '" + inf +  "')";
 		baseDatos.execSQL(sql);	
 	}
 	
@@ -76,14 +101,14 @@ public class ContactosSQLiteHelper extends SQLiteOpenHelper{
 		
 	}
 
-	public Contacto getContacto(int id){
+	/*public Contacto getContacto(int id){
 		String sql = "SELECT * FROM " + TABLA_NOMBRE + " WHERE " + ID_FILA + " = '" + id + "'";
 		Cursor cursor = baseDatos.rawQuery(sql, null);
 		cursor.moveToFirst();
 		Contacto contacto = new Contacto(cursor.getString(1), cursor.getString(2));
 		
 		return contacto;
-	}
+	}*/
 		
 	
 	/*public Cursor buscarContactoPorId(int num){

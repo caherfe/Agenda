@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
             <RadioGroup
-                android:id="@+id/GroupSexo"
+                android:id="@+id/rdGroupSexo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal" >
@@ -115,14 +115,15 @@
                     android:textColor="@android:color/white" />
 
                 <RadioButton
-                    android:id="@+id/Hombre"
+                    android:id="@+id/rdHombre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"                 
                     android:text="@string/sexoHombre"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:checked="true" />
 
                 <RadioButton
-                    android:id="@+id/rdHombre"
+                    android:id="@+id/rdMujer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/sexoMujer"

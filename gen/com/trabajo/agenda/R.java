@@ -25,27 +25,26 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int GroupSexo=0x7f080004;
-        public static final int Hombre=0x7f080005;
-        public static final int action_settings=0x7f080012;
+        public static final int action_settings=0x7f080011;
         public static final int btnOk=0x7f08000a;
         public static final int chkCocina=0x7f080008;
         public static final int chkDeportes=0x7f080007;
         public static final int chkInformatica=0x7f080009;
-        public static final int lstContactos=0x7f08000e;
-        public static final int menuBorrar=0x7f080014;
-        public static final int menuContactoNuevo=0x7f080011;
-        public static final int menuEditar=0x7f080013;
-        public static final int rdHombre=0x7f080006;
-        public static final int tvApellidos=0x7f080010;
-        public static final int tvNombre=0x7f08000f;
-        public static final int txtAficiones=0x7f08000d;
+        public static final int lstContactos=0x7f08000d;
+        public static final int menuBorrar=0x7f080013;
+        public static final int menuContactoNuevo=0x7f080010;
+        public static final int menuEditar=0x7f080012;
+        public static final int rdGroupSexo=0x7f080004;
+        public static final int rdHombre=0x7f080005;
+        public static final int rdMujer=0x7f080006;
+        public static final int tvApellidos=0x7f08000f;
+        public static final int tvNombre=0x7f08000e;
+        public static final int txtAficiones=0x7f08000c;
         public static final int txtApellidos=0x7f080001;
         public static final int txtEmail=0x7f080003;
         public static final int txtNombre=0x7f080000;
-        public static final int txtSexo=0x7f08000c;
+        public static final int txtSexo=0x7f08000b;
         public static final int txtTelefono=0x7f080002;
-        public static final int txtemail=0x7f08000b;
     }
     public static final class layout {
         public static final int activity_agregar_contactos=0x7f030000;
