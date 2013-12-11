@@ -90,7 +90,7 @@ public class ContactosSQLiteHelper extends SQLiteOpenHelper{
 	}
 	
 	public Cursor obtenerContactos(){
-		String sql = "SELECT * FROM " + TABLA_NOMBRE + ";";
+		String sql = "SELECT * FROM " + TABLA_NOMBRE + " ORDER BY " + ID_NOMBRE + ";";
 		return baseDatos.rawQuery(sql, null);
 		
 	}
