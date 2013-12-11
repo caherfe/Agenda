@@ -36,18 +36,30 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
+        <ImageView
+            android:src="@drawable/ic_email"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="@string/email" />
+        
         <TextView
             android:id="@+id/txtEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white" />
 
-        <TextView
-            android:id="@+id/txtSexo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white" />
+        <ImageView
+            android:id="@+id/ivSexo"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="@string/sexo" />
 
+        <ImageView
+            android:src="@drawable/ic_phone"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="@string/telefono" />
+        
         <TextView
             android:id="@+id/txtTelefono"
             android:layout_width="wrap_content"

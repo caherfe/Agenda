@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DetallesContactoActivity extends Activity {
-	private TextView txtNombre, txtApellidos, txtTelefono, txtEmail, txtSexo, txtAficiones;
+	private TextView txtNombre, txtApellidos, txtTelefono, txtEmail, txtAficiones;
+	private ImageView ivSexo;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +21,8 @@ public class DetallesContactoActivity extends Activity {
 		txtApellidos = (TextView) this.findViewById(R.id.txtApellidos);
 		txtTelefono = (TextView) this.findViewById(R.id.txtTelefono);
 		txtEmail = (TextView) this.findViewById(R.id.txtEmail);
-		txtSexo = (TextView) this.findViewById(R.id.txtSexo);
 		txtAficiones = (TextView) this.findViewById(R.id.txtAficiones);
+		ivSexo = (ImageView) this.findViewById(R.id.ivSexo);
 		
 		//Recuperamos la informaci—n pasada en el intent y la mostramos
         Bundle bundle = this.getIntent().getExtras();
@@ -28,13 +30,16 @@ public class DetallesContactoActivity extends Activity {
 		txtApellidos.setText(bundle.getString("apellidos"));
 		txtTelefono.setText(bundle.getString("telefono"));
 		txtEmail.setText(bundle.getString("email"));
-		txtSexo.setText(String.valueOf(bundle.getChar("sexo")));
+		if(bundle.getChar("sexo")=='H')
+			ivSexo.setImageResource(R.drawable.ic_hombre);
+		else
+			ivSexo.setImageResource(R.drawable.ic_mujer);			
 		if(bundle.getBoolean("deportes"))
-			txtAficiones.append("Deportes ");
+			txtAficiones.append("Deportes\n");
 		if(bundle.getBoolean("cocina"))
-			txtAficiones.append("Cocina ");
+			txtAficiones.append("Cocina\n");
 		if(bundle.getBoolean("informatica"))
-			txtAficiones.append("Inform‡tica ");
+			txtAficiones.append("Inform‡tica\n");
 	}
 
 	@Override
