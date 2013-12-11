@@ -23,8 +23,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.trabajo.agenda.AgregarContactos"
+            android:name="com.trabajo.agenda.AgregarContactosActivity"
             android:label="@string/title_activity_agregar_contactos" >
+        </activity>
+        <activity
+            android:name="com.trabajo.agenda.DetallesContactoActivity"
+            android:label="@string/title_activity_detalles_contacto" >
         </activity>
     </application>
 

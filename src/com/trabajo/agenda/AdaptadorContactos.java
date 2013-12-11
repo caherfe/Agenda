@@ -38,7 +38,7 @@ public class AdaptadorContactos extends SimpleCursorAdapter{
 			contenedor = (ViewHolder) convertView.getTag();
 		}
 		c.moveToPosition(position);
-		contenedor.tvNombre.setText(c.getString(1) + " ");
+		contenedor.tvNombre.setText(c.getString(1));
 		contenedor.tvApellidos.setText(c.getString(2));
 		return convertView;
 	}

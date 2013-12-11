@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".AgregarContactos" >
+    tools:context=".AgregarContactosActivity" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,6 +50,50 @@
                 android:textColor="@android:color/black" 
                 android:background="@android:color/white"
                 android:inputType="text"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="12dp" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"            
+                android:text="@string/telefono"
+                android:textColor="@android:color/white" />
+
+            <EditText
+                android:id="@+id/txtTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black" 
+                android:background="@android:color/white"
+                android:inputType="phone"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="12dp" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"            
+                android:text="@string/email"
+                android:textColor="@android:color/white" />
+
+            <EditText
+                android:id="@+id/txtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black" 
+                android:background="@android:color/white"
+                android:inputType="textEmailAddress"
                 android:layout_marginLeft="12dp"
                 android:layout_marginBottom="12dp" />
         </LinearLayout>
@@ -110,10 +154,12 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnAgregar"
+            android:id="@+id/btnOk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnAgregar"
-            android:layout_gravity="right" />
+            android:text="@string/btnOk"
+            android:layout_gravity="right"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp" />
 
 </LinearLayout>

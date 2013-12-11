@@ -70,6 +70,22 @@ public class ContactosSQLiteHelper extends SQLiteOpenHelper{
 		
 	}
 	
+	public void eliminarContacto(int id){
+		String sql = "DELETE FROM " + TABLA_NOMBRE + " WHERE " + ID_FILA + " = '" + id + "'";
+		baseDatos.execSQL(sql);
+		
+	}
+
+	public Contacto getContacto(int id){
+		String sql = "SELECT * FROM " + TABLA_NOMBRE + " WHERE " + ID_FILA + " = '" + id + "'";
+		Cursor cursor = baseDatos.rawQuery(sql, null);
+		cursor.moveToFirst();
+		Contacto contacto = new Contacto(cursor.getString(1), cursor.getString(2));
+		
+		return contacto;
+	}
+		
+	
 	/*public Cursor buscarContactoPorId(int num){
 		
 	}*/
