@@ -124,17 +124,15 @@ public class ContactosSQLiteHelper extends SQLiteOpenHelper{
 		return contacto;
 	}
 	
-	public void actualizarContacto(String nombre, String apellidos, String telefono, String email, char sexo, boolean deportes, boolean cocina, boolean informatica){
-		//Convertimos a enteros los booleanos
-		int dep = (deportes)? 1 : 0;
-		int coc = (cocina)? 1 : 0;
-		int inf = (informatica)? 1 : 0;
+	public void actualizarContacto(Contacto contacto, int id){
+		//Convertimos a enteros los booleanos -> Fusionar con el insertar
+		int dep = (contacto.isDeportes())? 1 : 0;
+		int coc = (contacto.isCocina())? 1 : 0;
+		int inf = (contacto.isInformatica())? 1 : 0;
 		
-		String sql = "INSERT INTO " + TABLA_NOMBRE +  "(" + ID_NOMBRE + ", " + ID_APELLIDOS + ", " 
-				+ ID_TELEFONO + ", " + ID_EMAIL + ", " + ID_SEXO + ", " + ID_DEPORTES + ", " 
-				+ ID_COCINA + ", " + ID_INFORMATICA + ") VALUES ('" + nombre + "', '" + apellidos + "', '" 
-				+ telefono + "', '" + email + "', '" + sexo + "', '" + dep + "', '" 
-				+ coc + "', '" + inf +  "')";
+		String sql = "UPDATE " + TABLA_NOMBRE +  " SET " + ID_NOMBRE + " = '" + contacto.getNombre() + "', " + ID_APELLIDOS + " = '" + contacto.getApellidos() + "', " 
+				+ ID_TELEFONO + " = '" + contacto.getTelefono() + "', " + ID_EMAIL + " = '" + contacto.getEmail() + "', " + ID_SEXO + " = '" + contacto.getSexo() + "', " 
+				+ ID_DEPORTES + " = " + dep + ", " + ID_COCINA + " = " + coc + ", " + ID_INFORMATICA + "=" + inf+ " WHERE " + ID_FILA + " = " + id + ";";
 		baseDatos.execSQL(sql);	
 	}
 		

@@ -20,6 +20,7 @@ public class AgregarContactosActivity extends Activity {
 	private CheckBox chkDeportes, chkCocina, chkInformatica;
 	private Button btnAceptar, btnCancelar;
 	private ContactosSQLiteHelper bdConexion;
+	private int idActualizar;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +46,9 @@ public class AgregarContactosActivity extends Activity {
 		if(this.getIntent().hasExtra("id")){
 			//Recuperamos la informaci—n pasada en el intent, obtenemos el contacto...
 			Bundle bundle = this.getIntent().getExtras();
+			idActualizar = bundle.getInt("id");
 			bdConexion.abrirLectura();
-			Contacto contacto = bdConexion.getContacto(bundle.getInt("id"));
+			Contacto contacto = bdConexion.getContacto(idActualizar);
 			bdConexion.cerrar();
 
 			//... y mostramos la informaci—n
@@ -77,8 +79,12 @@ public class AgregarContactosActivity extends Activity {
 				Contacto contacto = new Contacto(txtNombre.getText().toString(), txtApellidos.getText().toString(),
 						txtTelefono.getText().toString(), txtEmail.getText().toString(), sexo, chkDeportes.isChecked(), 
 						chkCocina.isChecked(), chkInformatica.isChecked());
+				
 				bdConexion.abrirEscritura();
-				bdConexion.insertarContacto(contacto);
+				if(idActualizar!=0)
+					bdConexion.actualizarContacto(contacto, idActualizar);
+				else
+					bdConexion.insertarContacto(contacto);
 				bdConexion.cerrar();
 				Intent intent = new Intent(AgregarContactosActivity.this, MainActivity.class);
 	            startActivity(intent);
