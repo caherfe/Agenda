@@ -10,6 +10,7 @@ import android.widget.TextView;
 public class DetallesContactoActivity extends Activity {
 	private TextView txtNombre, txtApellidos, txtTelefono, txtEmail, txtAficiones;
 	private ImageView ivSexo;
+	private ContactosSQLiteHelper bdConexion;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,29 +25,40 @@ public class DetallesContactoActivity extends Activity {
 		txtAficiones = (TextView) this.findViewById(R.id.txtAficiones);
 		ivSexo = (ImageView) this.findViewById(R.id.ivSexo);
 		
-		//Recuperamos la informaci—n pasada en el intent y la mostramos
-        Bundle bundle = this.getIntent().getExtras();
-		txtNombre.setText(bundle.getString("nombre"));
-		txtApellidos.setText(bundle.getString("apellidos"));
-		txtTelefono.setText(bundle.getString("telefono"));
-		txtEmail.setText(bundle.getString("email"));
-		if(bundle.getChar("sexo")=='H')
+		//Base de datos
+		bdConexion = new ContactosSQLiteHelper(this);
+		
+		//Recuperamos la informaci—n pasada en el intent, obtenemos el contacto...
+		Bundle bundle = this.getIntent().getExtras();
+		bdConexion.abrirLectura();
+		Contacto contacto = bdConexion.getContacto(bundle.getInt("id"));
+		bdConexion.cerrar();
+
+		//... y mostramos la informaci—n
+		txtNombre.setText(contacto.getNombre());
+		txtApellidos.setText(contacto.getApellidos());
+		txtTelefono.setText(contacto.getTelefono());
+		txtEmail.setText(contacto.getEmail());
+		if(contacto.getSexo()=='H')
 			ivSexo.setImageResource(R.drawable.ic_hombre);
 		else
 			ivSexo.setImageResource(R.drawable.ic_mujer);			
-		if(bundle.getBoolean("deportes"))
+		if(contacto.isDeportes())
 			txtAficiones.append("Deportes\n");
-		if(bundle.getBoolean("cocina"))
+		if(contacto.isCocina())
 			txtAficiones.append("Cocina\n");
-		if(bundle.getBoolean("informatica"))
+		if(contacto.isInformatica())
 			txtAficiones.append("Inform‡tica\n");
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.detalles_contacto, menu);
 		return true;
+	}
+	
+	public void finalizarActividad(){
+		this.finish();
 	}
 
 }

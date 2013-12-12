@@ -18,6 +18,7 @@
     <string name="aficionInformatica">Informática</string>
     <string name="btnAceptar">Aceptar</string>
     <string name="btnCancelar">Cancelar</string>
+    <string name="menuDetalles">Detalles</string>
     <string name="menuEditar">Editar</string>
     <string name="menuBorrar">Borrar</string>
     <string name="title_activity_detalles_contacto">DetallesContactoActivity</string>

@@ -19,6 +19,7 @@ public class AgregarContactosActivity extends Activity {
 	private RadioGroup rdSexo;
 	private CheckBox chkDeportes, chkCocina, chkInformatica;
 	private Button btnAceptar, btnCancelar;
+	private ContactosSQLiteHelper bdConexion;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,21 +37,30 @@ public class AgregarContactosActivity extends Activity {
 		chkInformatica = (CheckBox) this.findViewById(R.id.chkInformatica);
 		btnAceptar = (Button)this.findViewById(R.id.btnAceptar);
 		btnCancelar = (Button)this.findViewById(R.id.btnCancelar);
+			
+		//Base de datos
+		bdConexion = new ContactosSQLiteHelper(this);
 		
-		//Si hay informaci—n en el intent la mostramos
-		if(this.getIntent().hasExtra("nombre")){
+		//Si hay informaci—n en el intent la recuperamos, obtenemos el contacto...
+		if(this.getIntent().hasExtra("id")){
+			//Recuperamos la informaci—n pasada en el intent, obtenemos el contacto...
 			Bundle bundle = this.getIntent().getExtras();
-			txtNombre.setText(bundle.getString("nombre"));
-			txtApellidos.setText(bundle.getString("apellidos"));
-			txtTelefono.setText(bundle.getString("telefono"));
-			txtEmail.setText(bundle.getString("email"));
-			if(bundle.getChar("sexo")=='H')
+			bdConexion.abrirLectura();
+			Contacto contacto = bdConexion.getContacto(bundle.getInt("id"));
+			bdConexion.cerrar();
+
+			//... y mostramos la informaci—n
+			txtNombre.setText(contacto.getNombre());
+			txtApellidos.setText(contacto.getApellidos());
+			txtTelefono.setText(contacto.getTelefono());
+			txtEmail.setText(contacto.getEmail());
+			if(contacto.getSexo()=='H')
 				rdSexo.check(R.id.rdHombre);
 			else
 				rdSexo.check(R.id.rdMujer);
-			chkDeportes.setChecked(bundle.getBoolean("deportes"));
-			chkCocina.setChecked(bundle.getBoolean("cocina"));
-			chkInformatica.setChecked(bundle.getBoolean("informatica"));
+			chkDeportes.setChecked(contacto.isDeportes());
+			chkCocina.setChecked(contacto.isCocina());
+			chkInformatica.setChecked(contacto.isInformatica());
 		}
 		
 		
@@ -77,14 +87,12 @@ public class AgregarContactosActivity extends Activity {
 		});
 		
 		btnCancelar.setOnClickListener(new OnClickListener(){
-
 			@Override
 			public void onClick(View arg0) {
 				Intent intent = new Intent(AgregarContactosActivity.this, MainActivity.class);
 	            startActivity(intent);
 	            finalizarActividad();
 			}
-			
 		});
 	}
 	

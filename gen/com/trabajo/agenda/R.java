@@ -38,9 +38,10 @@ public final class R {
         public static final int chkInformatica=0x7f080009;
         public static final int ivSexo=0x7f08000c;
         public static final int lstContactos=0x7f08000e;
-        public static final int menuBorrar=0x7f080014;
+        public static final int menuBorrar=0x7f080015;
         public static final int menuContactoNuevo=0x7f080011;
-        public static final int menuEditar=0x7f080013;
+        public static final int menuDetalles=0x7f080013;
+        public static final int menuEditar=0x7f080014;
         public static final int rdGroupSexo=0x7f080004;
         public static final int rdHombre=0x7f080005;
         public static final int rdMujer=0x7f080006;
@@ -75,16 +76,17 @@ public final class R {
         public static final int btnCancelar=0x7f050010;
         public static final int contactoNuevo=0x7f050002;
         public static final int email=0x7f050007;
-        public static final int hello_world=0x7f050014;
-        public static final int menuBorrar=0x7f050012;
-        public static final int menuEditar=0x7f050011;
+        public static final int hello_world=0x7f050015;
+        public static final int menuBorrar=0x7f050013;
+        public static final int menuDetalles=0x7f050011;
+        public static final int menuEditar=0x7f050012;
         public static final int nombre=0x7f050004;
         public static final int sexo=0x7f050008;
         public static final int sexoHombre=0x7f050009;
         public static final int sexoMujer=0x7f05000a;
         public static final int telefono=0x7f050006;
         public static final int title_activity_agregar_contactos=0x7f050003;
-        public static final int title_activity_detalles_contacto=0x7f050013;
+        public static final int title_activity_detalles_contacto=0x7f050014;
     }
     public static final class style {
         /** 

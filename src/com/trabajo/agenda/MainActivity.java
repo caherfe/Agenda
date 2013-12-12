@@ -35,11 +35,13 @@ public class MainActivity extends Activity {
 		bdConexion = new ContactosSQLiteHelper(this);
 		
 //		/*Descomentar este c—digo para rellenar la base de datos inicialmente*/
-//		bdConexion.abrir();
+//		bdConexion.abrirEscritura();
+//		Contacto contacto;
 //		for(int i=1; i<=10; i++){
-//			bdConexion.insertarContacto("Nombre "+i, "Apellidos "+i, "Telefono"+i, "nombre"+i+"@email.com",
+//			contacto = new Contacto("Nombre "+i, "Apellidos "+i, "Telefono"+i, "nombre"+i+"@email.com",
 //					'H', true, true, true);
-//		}
+//			bdConexion.insertarContacto(contacto);
+//		}	
 //		bdConexion.cerrar();
 		
 		//Asociamos el menœ contextual a la lista
@@ -47,35 +49,11 @@ public class MainActivity extends Activity {
 	    
 	    //Cuando hagamos clic en algœn elemento de la lista...
 	    lstContactos.setOnItemClickListener(new OnItemClickListener() {
-
 			@Override
-			public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-				bdConexion.abrirLectura();
-				Contacto contacto = bdConexion.getContacto((int)id);
-				bdConexion.cerrar();
-				
-				Intent intent = new Intent(MainActivity.this, DetallesContactoActivity.class);
-
-                //Creamos la informaci—n a pasar entre actividades
-                Bundle b = new Bundle();
-                b.putString("nombre", contacto.getNombre());
-                b.putString("apellidos", contacto.getApellidos());
-                b.putString("telefono", contacto.getTelefono());
-                b.putString("email", contacto.getEmail());
-                b.putChar("sexo", contacto.getSexo());
-                b.putBoolean("deportes", contacto.isDeportes());
-                b.putBoolean("cocina", contacto.isCocina());
-                b.putBoolean("informatica", contacto.isInformatica());
-
-                //A–adimos la informaci—n al intent
-                intent.putExtras(b);
-
-                //Iniciamos la nueva actividad
-                startActivity(intent);
+			public void onItemClick(AdapterView<?> a, View v, int position, long id) {				
+				iniciarActividad(DetallesContactoActivity.class, (int)id);
 			}
 		});
-	    
-	    
 	    
 	    //Actualizar lista
 	    this.actualizarCursor();
@@ -92,7 +70,6 @@ public class MainActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_main,menu);
 		return true;
 	}
@@ -104,7 +81,6 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent(MainActivity.this, AgregarContactosActivity.class);
                 startActivity(intent);
 				break;
-			//A–adir m‡s opciones al menœ de la actividad principal si hay
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -114,12 +90,8 @@ public class MainActivity extends Activity {
 			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		MenuInflater inflater = getMenuInflater();
-
-	    //AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
-	    
 	    menu.setHeaderTitle("Elige una opci—n");
-	 
-	   inflater.inflate(R.menu.menu_contextual_contacto, menu);
+	    inflater.inflate(R.menu.menu_contextual_contacto, menu);
 	   
 	}
 
@@ -128,25 +100,11 @@ public class MainActivity extends Activity {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 		 
 		    switch (item.getItemId()) {
+		    	case R.id.menuDetalles:
+		    		iniciarActividad(DetallesContactoActivity.class, (int)info.id);
+		    	return true;
 		        case R.id.menuEditar:
-//*********************************Esto hay que fusionarlo con el borrar
-		        	bdConexion.abrirLectura();
-					Contacto contacto = bdConexion.getContacto((int)info.id);
-					bdConexion.cerrar();
-		        	Intent intent = new Intent(MainActivity.this, AgregarContactosActivity.class);
-		        	//Creamos la informaci—n a pasar entre actividades
-	                Bundle b = new Bundle();
-	                b.putString("nombre", contacto.getNombre());
-	                b.putString("apellidos", contacto.getApellidos());
-	                b.putString("telefono", contacto.getTelefono());
-	                b.putString("email", contacto.getEmail());
-	                b.putChar("sexo", contacto.getSexo());
-	                b.putBoolean("deportes", contacto.isDeportes());
-	                b.putBoolean("cocina", contacto.isCocina());
-	                b.putBoolean("informatica", contacto.isInformatica());
-	                //A–adimos la informaci—n al intent
-	                intent.putExtras(b);
-	                startActivity(intent);
+		        	iniciarActividad(AgregarContactosActivity.class, (int)info.id);
 		            return true;
 		        case R.id.menuBorrar:
 		            bdConexion.abrirEscritura();
@@ -159,10 +117,14 @@ public class MainActivity extends Activity {
 		    }
 	}
 	
-	
-	
-
-
+	private void iniciarActividad(Class clase, int id) {
+    	Intent intent = new Intent(MainActivity.this, clase);
+		Bundle b = new Bundle();
+		b.putInt("id", id);
+		intent.putExtras(b);
+		startActivity(intent);
+		
+	}
 	
 	
 }
