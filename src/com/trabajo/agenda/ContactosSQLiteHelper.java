@@ -75,17 +75,17 @@ public class ContactosSQLiteHelper extends SQLiteOpenHelper{
 		close();
 	}
 	
-	public void insertarContacto(String nombre, String apellidos, String telefono, String email, char sexo, boolean deportes, boolean cocina, boolean informatica){
+	public void insertarContacto(Contacto contacto){
 		//Convertimos a enteros los booleanos
-		int dep = (deportes)? 1 : 0;
-		int coc = (cocina)? 1 : 0;
-		int inf = (informatica)? 1 : 0;
+		int dep = (contacto.isDeportes())? 1 : 0;
+		int coc = (contacto.isCocina())? 1 : 0;
+		int inf = (contacto.isInformatica())? 1 : 0;
 		
 		String sql = "INSERT INTO " + TABLA_NOMBRE +  "(" + ID_NOMBRE + ", " + ID_APELLIDOS + ", " 
 				+ ID_TELEFONO + ", " + ID_EMAIL + ", " + ID_SEXO + ", " + ID_DEPORTES + ", " 
-				+ ID_COCINA + ", " + ID_INFORMATICA + ") VALUES ('" + nombre + "', '" + apellidos + "', '" 
-				+ telefono + "', '" + email + "', '" + sexo + "', '" + dep + "', '" 
-				+ coc + "', '" + inf +  "')";
+				+ ID_COCINA + ", " + ID_INFORMATICA + ") VALUES ('" + contacto.getNombre() + "', '" 
+				+ contacto.getApellidos() + "', '" + contacto.getTelefono() + "', '" + contacto.getEmail() + "', '" 
+				+ contacto.getSexo() + "', '" + dep + "', '" + coc + "', '" + inf +  "')";
 		baseDatos.execSQL(sql);	
 	}
 	
@@ -110,8 +110,22 @@ public class ContactosSQLiteHelper extends SQLiteOpenHelper{
 		Boolean inf = (cursor.getInt(8) == 1)? true : false;
 		Contacto contacto = new Contacto(cursor.getString(1), cursor.getString(2), cursor.getString(3),
 				cursor.getString(4), cursor.getString(5).charAt(0), dep, coc, inf);
-		
+		cursor.close();
 		return contacto;
+	}
+	
+	public void actualizarContacto(String nombre, String apellidos, String telefono, String email, char sexo, boolean deportes, boolean cocina, boolean informatica){
+		//Convertimos a enteros los booleanos
+		int dep = (deportes)? 1 : 0;
+		int coc = (cocina)? 1 : 0;
+		int inf = (informatica)? 1 : 0;
+		
+		String sql = "INSERT INTO " + TABLA_NOMBRE +  "(" + ID_NOMBRE + ", " + ID_APELLIDOS + ", " 
+				+ ID_TELEFONO + ", " + ID_EMAIL + ", " + ID_SEXO + ", " + ID_DEPORTES + ", " 
+				+ ID_COCINA + ", " + ID_INFORMATICA + ") VALUES ('" + nombre + "', '" + apellidos + "', '" 
+				+ telefono + "', '" + email + "', '" + sexo + "', '" + dep + "', '" 
+				+ coc + "', '" + inf +  "')";
+		baseDatos.execSQL(sql);	
 	}
 		
 	
