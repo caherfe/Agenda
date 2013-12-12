@@ -2,6 +2,8 @@ package com.trabajo.agenda;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.view.ContextMenu;
@@ -107,16 +109,40 @@ public class MainActivity extends Activity {
 		        	iniciarActividad(AgregarContactosActivity.class, (int)info.id);
 		            return true;
 		        case R.id.menuBorrar:
-		            bdConexion.abrirEscritura();
-		            bdConexion.eliminarContacto((int)info.id);
-		            bdConexion.cerrar();
-		            this.actualizarCursor();
+		        	eliminarContacto((int)info.id);
 		            return true;
 		        default:
 		            return super.onContextItemSelected(item);
 		    }
 	}
 	
+	private void eliminarContacto(int id) {
+		final int idContacto = id;
+		AlertDialog.Builder builder =
+                new AlertDialog.Builder(this);
+ 
+        builder.setMessage("ÀConfirma que desea eliminar el contacto?")
+        .setTitle("ÁLa acci—n no podr‡ deshacerse!")
+        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener()  {
+               public void onClick(DialogInterface dialog, int id) {
+	            	   	bdConexion.abrirEscritura();
+	   	            	bdConexion.eliminarContacto(idContacto);
+	   	            	bdConexion.cerrar();
+	   	            	actualizarCursor();
+	                    dialog.cancel();
+                   }
+               })
+        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+               public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                   }
+               });
+ 
+        builder.show();
+	            
+		
+	}
+
 	private void iniciarActividad(Class clase, int id) {
     	Intent intent = new Intent(MainActivity.this, clase);
 		Bundle b = new Bundle();
