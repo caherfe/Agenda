@@ -37,6 +37,16 @@ public class AgregarContactosActivity extends Activity {
 		btnAceptar = (Button)this.findViewById(R.id.btnAceptar);
 		btnCancelar = (Button)this.findViewById(R.id.btnCancelar);
 		
+		//Si hay informaci—n en el intent la mostramos
+		Bundle bundle = this.getIntent().getExtras();
+		if(!bundle.isEmpty()){
+			txtNombre.setText(bundle.getString("nombre"));
+			txtApellidos.setText(bundle.getString("apellidos"));
+			txtTelefono.setText(bundle.getString("telefono"));
+			txtEmail.setText(bundle.getString("email"));
+		}
+		
+		
 		btnAceptar.setOnClickListener(new OnClickListener(){
 
 			@Override

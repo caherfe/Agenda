@@ -129,7 +129,24 @@ public class MainActivity extends Activity {
 		 
 		    switch (item.getItemId()) {
 		        case R.id.menuEditar:
-		            //lblMensaje.setText("Etiqueta: Opcion 1 pulsada!");
+//*********************************Esto hay que fusionarlo con el borrar
+		        	bdConexion.abrirLectura();
+					Contacto contacto = bdConexion.getContacto((int)info.id);
+					bdConexion.cerrar();
+		        	Intent intent = new Intent(MainActivity.this, AgregarContactosActivity.class);
+		        	//Creamos la informaci—n a pasar entre actividades
+	                Bundle b = new Bundle();
+	                b.putString("nombre", contacto.getNombre());
+	                b.putString("apellidos", contacto.getApellidos());
+	                b.putString("telefono", contacto.getTelefono());
+	                b.putString("email", contacto.getEmail());
+	                b.putChar("sexo", contacto.getSexo());
+	                b.putBoolean("deportes", contacto.isDeportes());
+	                b.putBoolean("cocina", contacto.isCocina());
+	                b.putBoolean("informatica", contacto.isInformatica());
+	                //A–adimos la informaci—n al intent
+	                intent.putExtras(b);
+	                startActivity(intent);
 		            return true;
 		        case R.id.menuBorrar:
 		            bdConexion.abrirEscritura();
