@@ -56,7 +56,7 @@ public class AdaptadorContactos extends SimpleCursorAdapter{
 		return convertView;
 	}
 	
-	private Bitmap getBitmap(String imagen) {
+	public static Bitmap getBitmap(String imagen) {
 		File imagenArchivo = new File(imagen);
 		Bitmap bitmap = null;
 

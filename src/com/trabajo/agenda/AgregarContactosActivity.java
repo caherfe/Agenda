@@ -78,11 +78,11 @@ public class AgregarContactosActivity extends Activity {
 			imagen = contacto.getImagen();
 		}
 		//Imagen bot—n
-		Bitmap bitmap = getBitmap(imagen);
+		Bitmap bitmap =  AdaptadorContactos.getBitmap(imagen);
 		if(imagen.equals("") || bitmap==null)
 			btnPerfil.setImageResource(R.drawable.ic_add_imagen);
 		else
-			btnPerfil.setImageBitmap(getBitmap(imagen));
+			btnPerfil.setImageBitmap( AdaptadorContactos.getBitmap(imagen));
 		
 		
 		btnAceptar.setOnClickListener(new OnClickListener(){
@@ -147,7 +147,7 @@ public class AgregarContactosActivity extends Activity {
 				if (resultCode == Activity.RESULT_OK) {
 					Uri selectedImage = data.getData();
 					imagen = getRuta(selectedImage);
-					Bitmap bitmap = getBitmap(imagen);
+					Bitmap bitmap = AdaptadorContactos.getBitmap(imagen);
 
 					if (bitmap.getHeight() != 120 || bitmap.getWidth() != 120) {
 						bitmap = Bitmap.createScaledBitmap(
@@ -166,18 +166,6 @@ public class AgregarContactosActivity extends Activity {
 		}
 
 	}
-	
-	private Bitmap getBitmap(String imagen) {
-		File imagenArchivo = new File(imagen);
-		Bitmap bitmap = null;
-
-		if (imagenArchivo.exists()) {
-			bitmap = BitmapFactory.decodeFile(imagenArchivo.getAbsolutePath());
-			return bitmap;
-		}
-		return null;		
-	}
-
 
 	private String getRuta(Uri uri) {
 		String[] projection = { android.provider.MediaStore.Images.Media.DATA };

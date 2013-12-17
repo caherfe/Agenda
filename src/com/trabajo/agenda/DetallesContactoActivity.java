@@ -3,6 +3,7 @@ package com.trabajo.agenda;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -45,14 +46,22 @@ public class DetallesContactoActivity extends Activity {
 		if(contacto.getSexo()=='H')
 			ivSexo.setImageResource(R.drawable.ic_hombre);
 		else
-			ivSexo.setImageResource(R.drawable.ic_mujer);			
+			ivSexo.setImageResource(R.drawable.ic_mujer);
+		
 		if(contacto.isDeportes())
 			txtAficiones.append("Deportes\n");
 		if(contacto.isCocina())
 			txtAficiones.append("Cocina\n");
 		if(contacto.isInformatica())
 			txtAficiones.append("Inform‡tica\n");
-		ivImagen.setImageResource(R.drawable.ic_profile);
+		
+		//Imagen
+		String imagen = contacto.getImagen();
+		Bitmap bitmap =  AdaptadorContactos.getBitmap(imagen);
+		if(imagen.equals("") || bitmap==null)
+			ivImagen.setImageResource(R.drawable.ic_profile);
+		else
+			ivImagen.setImageBitmap(AdaptadorContactos.getBitmap(imagen));
 	}
 
 	@Override

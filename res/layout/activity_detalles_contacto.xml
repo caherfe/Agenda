@@ -76,17 +76,14 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginLeft="15dp"
-                        android:contentDescription="@string/email"
-                        android:src="@drawable/ic_email" />
+                        android:contentDescription="@string/telefono"
+                        android:src="@drawable/ic_phone" />
 
                     <TextView
-                        android:id="@+id/txtEmail"
+                        android:id="@+id/txtTelefono"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginTop="2dp"
                         android:textColor="@android:color/black"
-                        android:textSize="12sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -99,15 +96,18 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginLeft="15dp"
-                        android:contentDescription="@string/telefono"
-                        android:src="@drawable/ic_phone" />
+                        android:contentDescription="@string/email"
+                        android:src="@drawable/ic_email" />
 
                     <TextView
-                        android:id="@+id/txtTelefono"
+                        android:id="@+id/txtEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="2dp"
                         android:textColor="@android:color/black"
-                        android:textStyle="bold" />
+                        android:textSize="12sp"
+                        android:textStyle="italic" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -122,25 +122,6 @@
                         android:text="@string/aficiones"
                         android:textColor="@android:color/black"
                         android:textStyle="bold" />
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:contentDescription="@string/telefono"
-                        android:src="@drawable/ic_phone" />
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:contentDescription="@string/telefono"
-                        android:src="@drawable/ic_phone" />
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="15dp"
-                        android:contentDescription="@string/telefono"
-                        android:src="@drawable/ic_phone" />
                 </LinearLayout>
 
                 <TextView
@@ -149,7 +130,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:textColor="@android:color/black"
-                    android:textStyle="bold" />
+                    android:textSize="12sp"
+                    android:textStyle="italic"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
