@@ -23,6 +23,7 @@
     <string name="menuBorrar">Borrar</string>
     <string name="menuAutodestruccion">Autodestrucción</string>
     <string name="menuCreditos">Créditos</string>
+    <string name="menuLlamar">Llamar</string>
     <string name="title_activity_detalles_contacto">Detalles Contacto</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_creditos">Creditos</string>

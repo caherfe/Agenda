@@ -2,7 +2,9 @@ package com.trabajo.agenda;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -57,6 +59,22 @@ public class DetallesContactoActivity extends Activity {
 		return true;
 	}
 	
+	
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()){
+			case R.id.menuEditar:
+	            Intent intent = new Intent(DetallesContactoActivity.this, AgregarContactosActivity.class);
+	            Bundle bundle = this.getIntent().getExtras();
+	    		intent.putExtras(bundle);
+	    		startActivity(intent);
+	    		this.finalizarActividad();
+				break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
 	public void finalizarActividad(){
 		this.finish();
 	}

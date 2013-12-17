@@ -2,6 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     
     <item 
+        android:id="@+id/menuLlamar"
+    	android:title="@string/menuLlamar"></item>
+    <item 
         android:id="@+id/menuDetalles"
     	android:title="@string/menuDetalles"></item>
     <item 

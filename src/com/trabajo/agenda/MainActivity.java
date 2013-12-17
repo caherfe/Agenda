@@ -1,5 +1,6 @@
 package com.trabajo.agenda;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -38,8 +39,8 @@ public class MainActivity extends Activity {
 //		/*Descomentar este c—digo para rellenar la base de datos inicialmente*/
 //		bdConexion.abrirEscritura();
 //		Contacto contacto;
-//		for(int i=1; i<=10; i++){
-//			contacto = new Contacto("Nombre "+i, "Apellidos "+i, "Telefono"+i, "nombre"+i+"@email.com",
+//		for(int i=1; i<10; i++){
+//			contacto = new Contacto("Nombre "+i, "Apellidos "+i, "66666666"+i, "nombre"+i+"@email.com",
 //					'H', true, true, true);
 //			bdConexion.insertarContacto(contacto);
 //		}	
@@ -109,9 +110,15 @@ public class MainActivity extends Activity {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 		 
 		    switch (item.getItemId()) {
+		    	case R.id.menuLlamar:
+		    		bdConexion.abrirLectura();
+		    		String telefono = bdConexion.getTelefono((int)info.id);
+		    		bdConexion.cerrar();
+		    		this.llamar(telefono);
+		    		return true;
 		    	case R.id.menuDetalles:
 		    		iniciarActividad(DetallesContactoActivity.class, (int)info.id);
-		    	return true;
+		    		return true;
 		        case R.id.menuEditar:
 		        	iniciarActividad(AgregarContactosActivity.class, (int)info.id);
 		            return true;
@@ -183,6 +190,14 @@ public class MainActivity extends Activity {
 		intent.putExtras(b);
 		startActivity(intent);
 		
+	}
+	
+	public void llamar(String tel){
+		   try{
+		      startActivity(new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+tel)));
+		   }catch(Exception e){
+		      e.printStackTrace();
+		   }
 	}
 	
 	

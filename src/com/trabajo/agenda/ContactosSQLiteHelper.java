@@ -113,6 +113,15 @@ public class ContactosSQLiteHelper extends SQLiteOpenHelper{
 		return contacto;
 	}
 	
+	public String getTelefono(int id){
+		String sql = "SELECT " + ID_TELEFONO + " FROM " + TABLA_NOMBRE + " WHERE " + ID_FILA + " = '" + id + "'";
+		Cursor cursor = baseDatos.rawQuery(sql, null);
+		cursor.moveToFirst();
+		String telefono = cursor.getString(cursor.getColumnIndex(ID_TELEFONO));
+		cursor.close();
+		return telefono;
+	}
+	
 	public void actualizarContacto(Contacto contacto, int id){
 		//Convertimos a enteros los booleanos -> Fusionar con el insertar
 		int dep = (contacto.isDeportes())? 1 : 0;
