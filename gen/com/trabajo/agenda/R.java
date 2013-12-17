@@ -22,16 +22,23 @@ public final class R {
     }
     public static final class drawable {
         public static final int background=0x7f020000;
-        public static final int ic_add_user=0x7f020001;
-        public static final int ic_email=0x7f020002;
-        public static final int ic_hombre=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int ic_mujer=0x7f020005;
-        public static final int ic_phone=0x7f020006;
-        public static final int ic_users=0x7f020007;
+        public static final int backgroundclean=0x7f020001;
+        public static final int calidad=0x7f020002;
+        public static final int ic_add_user=0x7f020003;
+        public static final int ic_bomba=0x7f020004;
+        public static final int ic_credits=0x7f020005;
+        public static final int ic_edit=0x7f020006;
+        public static final int ic_email=0x7f020007;
+        public static final int ic_hombre=0x7f020008;
+        public static final int ic_launcher=0x7f020009;
+        public static final int ic_mujer=0x7f02000a;
+        public static final int ic_phone=0x7f02000b;
+        public static final int ic_search=0x7f02000c;
+        public static final int ic_users=0x7f02000d;
+        public static final int libroclean=0x7f02000e;
+        public static final int librosapilados=0x7f02000f;
     }
     public static final class id {
-        public static final int action_settings=0x7f080012;
         public static final int btnAceptar=0x7f08000a;
         public static final int btnCancelar=0x7f08000b;
         public static final int chkCocina=0x7f080008;
@@ -39,9 +46,11 @@ public final class R {
         public static final int chkInformatica=0x7f080009;
         public static final int ivSexo=0x7f08000c;
         public static final int lstContactos=0x7f08000e;
-        public static final int menuBorrar=0x7f080015;
+        public static final int menuAutodestruccion=0x7f080012;
+        public static final int menuBorrar=0x7f080016;
         public static final int menuContactoNuevo=0x7f080011;
-        public static final int menuDetalles=0x7f080013;
+        public static final int menuCreditos=0x7f080013;
+        public static final int menuDetalles=0x7f080015;
         public static final int menuEditar=0x7f080014;
         public static final int rdGroupSexo=0x7f080004;
         public static final int rdHombre=0x7f080005;
@@ -56,9 +65,10 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_agregar_contactos=0x7f030000;
-        public static final int activity_detalles_contacto=0x7f030001;
-        public static final int activity_main=0x7f030002;
-        public static final int listitem_contacto=0x7f030003;
+        public static final int activity_creditos=0x7f030001;
+        public static final int activity_detalles_contacto=0x7f030002;
+        public static final int activity_main=0x7f030003;
+        public static final int listitem_contacto=0x7f030004;
     }
     public static final class menu {
         public static final int activity_main=0x7f070000;
@@ -77,8 +87,10 @@ public final class R {
         public static final int btnCancelar=0x7f050010;
         public static final int contactoNuevo=0x7f050002;
         public static final int email=0x7f050007;
-        public static final int hello_world=0x7f050015;
+        public static final int hello_world=0x7f050017;
+        public static final int menuAutodestruccion=0x7f050014;
         public static final int menuBorrar=0x7f050013;
+        public static final int menuCreditos=0x7f050015;
         public static final int menuDetalles=0x7f050011;
         public static final int menuEditar=0x7f050012;
         public static final int nombre=0x7f050004;
@@ -87,7 +99,8 @@ public final class R {
         public static final int sexoMujer=0x7f05000a;
         public static final int telefono=0x7f050006;
         public static final int title_activity_agregar_contactos=0x7f050003;
-        public static final int title_activity_detalles_contacto=0x7f050014;
+        public static final int title_activity_creditos=0x7f050018;
+        public static final int title_activity_detalles_contacto=0x7f050016;
     }
     public static final class style {
         /** 

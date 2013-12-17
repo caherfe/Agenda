@@ -46,17 +46,6 @@ public class ContactosSQLiteHelper extends SQLiteOpenHelper{
 				+ ID_COCINA + " INTEGER NOT NULL, " //1 checked 0 unchecked
 				+ ID_INFORMATICA + " INTEGER NOT NULL);"; //1 checked 0 unchecked
 		db.execSQL(sqlCreate);
-		
-		
-//		/*Descomentar este c—digo para rellenar la base de datos inicialmente*/
-//		abrirEscritura();
-//		Contacto contacto;
-//		for(int i=1; i<=10; i++){
-//			contacto = new Contacto("Nombre "+i, "Apellidos "+i, "Telefono"+i, "nombre"+i+"@email.com",
-//					'H', true, true, true);
-//			insertarContacto(contacto);
-//		}	
-//		cerrar();
 	}
 
 	//C—digo necesario para actualizar la estructura de nuestra base de datos
@@ -137,9 +126,10 @@ public class ContactosSQLiteHelper extends SQLiteOpenHelper{
 	}
 		
 	
-	/*public Cursor buscarContactoPorId(int num){
-		
-	}*/
+	public void autodestruccion(){
+		String sql = "DELETE FROM " + TABLA_NOMBRE;
+		baseDatos.execSQL(sql);
+	}
 	
 	
 

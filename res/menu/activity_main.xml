@@ -4,4 +4,12 @@
         android:id="@+id/menuContactoNuevo"
         android:title="@string/contactoNuevo"
         android:icon="@drawable/ic_add_user"/>
+    <item
+        android:id="@+id/menuAutodestruccion"
+        android:title="@string/menuAutodestruccion"
+        android:icon="@drawable/ic_bomba"/>
+    <item
+        android:id="@+id/menuCreditos"
+        android:title="@string/menuCreditos"
+        android:icon="@drawable/ic_credits"/>
  </menu>

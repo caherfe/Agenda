@@ -30,6 +30,10 @@
             android:name="com.trabajo.agenda.DetallesContactoActivity"
             android:label="@string/title_activity_detalles_contacto" >
         </activity>
+        <activity
+            android:name="com.trabajo.agenda.CreditosActivity"
+            android:label="@string/title_activity_creditos" >
+        </activity>
     </application>
 
 </manifest>

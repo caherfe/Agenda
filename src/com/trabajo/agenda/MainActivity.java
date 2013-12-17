@@ -23,7 +23,6 @@ public class MainActivity extends Activity {
 	private ListView lstContactos;
 	private ContactosSQLiteHelper bdConexion;
 	private AdaptadorContactos adaptador;
-	private Cursor cursor;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +63,7 @@ public class MainActivity extends Activity {
 	
 	public void actualizarCursor(){
 		bdConexion.abrirLectura();
-		cursor= bdConexion.obtenerContactos();
+		Cursor cursor= bdConexion.obtenerContactos();
 		adaptador = new AdaptadorContactos(this, R.layout.listitem_contacto, cursor, new String[]{}, new int[]{},0);
 		lstContactos.setAdapter(adaptador);
 		bdConexion.cerrar();		
@@ -78,9 +77,17 @@ public class MainActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent intent;
 		switch(item.getItemId()){
 			case R.id.menuContactoNuevo:
-                Intent intent = new Intent(MainActivity.this, AgregarContactosActivity.class);
+                intent = new Intent(MainActivity.this, AgregarContactosActivity.class);
+                startActivity(intent);
+				break;
+			case R.id.menuAutodestruccion:
+				autodestruccion();
+				break;
+			case R.id.menuCreditos:
+				intent = new Intent(MainActivity.this, CreditosActivity.class);
                 startActivity(intent);
 				break;
 		}
@@ -129,6 +136,32 @@ public class MainActivity extends Activity {
 	   	            	bdConexion.eliminarContacto(idContacto);
 	   	            	bdConexion.cerrar();
 	   	            	actualizarCursor();
+	                    dialog.cancel();
+                   }
+               })
+        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+               public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                   }
+               });
+ 
+        builder.show();
+	            
+		
+	}
+	
+	private void autodestruccion() {
+		AlertDialog.Builder builder =
+                new AlertDialog.Builder(this);
+ 
+        builder.setMessage("ÀConfirma la autodestrucci—n?")
+        .setTitle("ÁLa acci—n no podr‡ deshacerse!")
+        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener()  {
+               public void onClick(DialogInterface dialog, int id) {
+            	   		bdConexion.abrirEscritura();
+            	   		bdConexion.autodestruccion();
+            	   		bdConexion.cerrar();
+            	   		actualizarCursor();
 	                    dialog.cancel();
                    }
                })
