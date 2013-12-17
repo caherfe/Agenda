@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class DetallesContactoActivity extends Activity {
 	private TextView txtNombre, txtApellidos, txtTelefono, txtEmail, txtAficiones;
-	private ImageView ivSexo;
+	private ImageView ivSexo, ivImagen;
 	private ContactosSQLiteHelper bdConexion;
 
 	@Override
@@ -26,6 +26,7 @@ public class DetallesContactoActivity extends Activity {
 		txtEmail = (TextView) this.findViewById(R.id.txtEmail);
 		txtAficiones = (TextView) this.findViewById(R.id.txtAficiones);
 		ivSexo = (ImageView) this.findViewById(R.id.ivSexo);
+		ivImagen = (ImageView) this.findViewById(R.id.ivImagen);
 		
 		//Base de datos
 		bdConexion = new ContactosSQLiteHelper(this);
@@ -51,6 +52,7 @@ public class DetallesContactoActivity extends Activity {
 			txtAficiones.append("Cocina\n");
 		if(contacto.isInformatica())
 			txtAficiones.append("Inform‡tica\n");
+		ivImagen.setImageResource(R.drawable.ic_profile);
 	}
 
 	@Override

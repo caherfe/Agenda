@@ -21,6 +21,7 @@ public class AgregarContactosActivity extends Activity {
 	private Button btnAceptar, btnCancelar;
 	private ContactosSQLiteHelper bdConexion;
 	private int idActualizar;
+	private String imagen="";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +79,7 @@ public class AgregarContactosActivity extends Activity {
 				ContactosSQLiteHelper bdConexion = new ContactosSQLiteHelper(AgregarContactosActivity.this);
 				Contacto contacto = new Contacto(txtNombre.getText().toString(), txtApellidos.getText().toString(),
 						txtTelefono.getText().toString(), txtEmail.getText().toString(), sexo, chkDeportes.isChecked(), 
-						chkCocina.isChecked(), chkInformatica.isChecked());
+						chkCocina.isChecked(), chkInformatica.isChecked(), imagen);
 				
 				bdConexion.abrirEscritura();
 				if(idActualizar!=0)

@@ -9,10 +9,11 @@ public class Contacto {
 	private boolean deportes;
 	private boolean cocina;
 	private boolean informatica;
+	private String imagen;
 	
 	Contacto(String nombre, String apellidos, String telefono,
 			String email, char sexo, boolean deportes, boolean cocina,
-			boolean informatica) {
+			boolean informatica, String imagen) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.telefono = telefono;
@@ -21,6 +22,7 @@ public class Contacto {
 		this.deportes = deportes;
 		this.cocina = cocina;
 		this.informatica = informatica;
+		this.imagen = imagen;
 	}
 
 	public String getNombre() {
@@ -86,4 +88,14 @@ public class Contacto {
 	public void setInformatica(boolean informatica) {
 		this.informatica = informatica;
 	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+	
+	
 }

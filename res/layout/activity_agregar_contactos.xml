@@ -10,6 +10,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".AgregarContactosActivity" >
 
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@drawable/ic_add_imagen"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:contentDescription="@string/imagen" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,73 +108,88 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="horizontal" >
             
-            <TextView
-               	android:layout_width="wrap_content"
-               	android:layout_height="wrap_content"                  
-                android:text="@string/sexo"
-                android:textStyle="bold"
-                android:textColor="@android:color/white" />
-            
-            <RadioGroup
-                android:id="@+id/rdGroupSexo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal" >
-
-                <RadioButton
-                    android:id="@+id/rdHombre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"                 
-                    android:text="@string/sexoHombre"
-                    android:textColor="@android:color/white"
-                    android:checked="true" />
-
-                <RadioButton
-                    android:id="@+id/rdMujer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/sexoMujer"
-                    android:textColor="@android:color/white" />
-            </RadioGroup>
-
-        	<TextView
-            	android:layout_width="wrap_content"
-            	android:layout_height="wrap_content"
-            	android:textStyle="bold"
-            	android:text="@string/aficiones"
-            	android:textColor="@android:color/white" />
-
-            <CheckBox
-                android:id="@+id/chkDeportes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/aficionDeportes"
-                android:textColor="@android:color/white" />
-
-            <CheckBox
-                android:id="@+id/chkCocina"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/aficionCocina" 
-                android:textColor="@android:color/white" />
-
-            <CheckBox
-                android:id="@+id/chkInformatica"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/aficionInformatica" 
-                android:textColor="@android:color/white" />
-        </LinearLayout>
+	        <LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical"
+	            android:layout_marginRight="30dp" >
+	            
+	            <TextView
+	               	android:layout_width="wrap_content"
+	               	android:layout_height="wrap_content"                  
+	                android:text="@string/sexo"
+	                android:textStyle="bold"
+	                android:textColor="@android:color/white" />
+	            
+	            <RadioGroup
+	                android:id="@+id/rdGroupSexo"
+	                android:layout_width="wrap_content" 
+	                android:layout_height="wrap_content" 
+	                android:orientation="vertical" >
+	
+	                <RadioButton
+	                    android:id="@+id/rdHombre"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"                 
+	                    android:text="@string/sexoHombre"
+	                    android:textColor="@android:color/white"
+	                    android:checked="true" />
+	
+	                <RadioButton
+	                    android:id="@+id/rdMujer"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:text="@string/sexoMujer"
+	                    android:textColor="@android:color/white" />
+	            </RadioGroup>
+			</LinearLayout>
+			
+			<LinearLayout
+	            android:layout_width="wrap_content" 
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical" >
+	            
+	        	<TextView
+	            	android:layout_width="wrap_content"
+	            	android:layout_height="wrap_content"
+	            	android:textStyle="bold"
+	            	android:text="@string/aficiones"
+	            	android:textColor="@android:color/white" />
+	
+	            <CheckBox
+	                android:id="@+id/chkDeportes"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="@string/aficionDeportes"
+	                android:textColor="@android:color/white" />
+	
+	            <CheckBox
+	                android:id="@+id/chkCocina"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="@string/aficionCocina" 
+	                android:textColor="@android:color/white" />
+	
+	            <CheckBox
+	                android:id="@+id/chkInformatica"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="@string/aficionInformatica" 
+	                android:textColor="@android:color/white" />
+	        </LinearLayout>
+	    </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="right" >
+            android:gravity="right"
+            android:layout_marginTop="5dp" >
+			
 	        <Button
 	            android:id="@+id/btnAceptar"
 	            android:layout_width="wrap_content"

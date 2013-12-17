@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
 //		Contacto contacto;
 //		for(int i=1; i<10; i++){
 //			contacto = new Contacto("Nombre "+i, "Apellidos "+i, "66666666"+i, "nombre"+i+"@email.com",
-//					'H', true, true, true);
+//					'H', true, true, true, "");
 //			bdConexion.insertarContacto(contacto);
 //		}	
 //		bdConexion.cerrar();

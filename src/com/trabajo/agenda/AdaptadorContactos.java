@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v4.widget.SimpleCursorAdapter;
 
@@ -32,6 +33,7 @@ public class AdaptadorContactos extends SimpleCursorAdapter{
 			contenedor = new ViewHolder();
 			contenedor.tvNombre = (TextView)convertView.findViewById(R.id.tvNombre);
 			contenedor.tvApellidos = (TextView)convertView.findViewById(R.id.tvApellidos);
+			contenedor.ivImagen = (ImageView)convertView.findViewById(R.id.ivImagen);
 			convertView.setTag(contenedor);
 		}
 		else{
@@ -40,6 +42,7 @@ public class AdaptadorContactos extends SimpleCursorAdapter{
 		c.moveToPosition(position);
 		contenedor.tvNombre.setText(c.getString(1));
 		contenedor.tvApellidos.setText(c.getString(2));
+		contenedor.ivImagen.setImageResource(R.drawable.ic_profile);
 		return convertView;
 	}
 
@@ -48,4 +51,5 @@ public class AdaptadorContactos extends SimpleCursorAdapter{
 class ViewHolder {
     TextView tvNombre;
     TextView tvApellidos;
+    ImageView ivImagen;
 }

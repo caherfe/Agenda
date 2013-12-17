@@ -17,6 +17,7 @@ public class ContactosSQLiteHelper extends SQLiteOpenHelper{
 	public static final String ID_DEPORTES = "deportes";
 	public static final String ID_COCINA = "cocina";
 	public static final String ID_INFORMATICA = "informatica";
+	public static final String ID_IMAGEN = "imagen";
 	
 	private static final String TABLA_NOMBRE = "contactos";
 	private static final String BASEDATOS_NOMBRE = "bdContactos.db";
@@ -44,7 +45,8 @@ public class ContactosSQLiteHelper extends SQLiteOpenHelper{
 				+ ID_SEXO + " TEXT NOT NULL, " //H o M
 				+ ID_DEPORTES + " INTEGER NOT NULL, " //1 checked 0 unchecked
 				+ ID_COCINA + " INTEGER NOT NULL, " //1 checked 0 unchecked
-				+ ID_INFORMATICA + " INTEGER NOT NULL);"; //1 checked 0 unchecked
+				+ ID_INFORMATICA + " INTEGER NOT NULL, " //1 checked 0 unchecked
+				+ ID_IMAGEN + " TEXT);"; 
 		db.execSQL(sqlCreate);
 	}
 
@@ -82,9 +84,9 @@ public class ContactosSQLiteHelper extends SQLiteOpenHelper{
 		
 		String sql = "INSERT INTO " + TABLA_NOMBRE +  "(" + ID_NOMBRE + ", " + ID_APELLIDOS + ", " 
 				+ ID_TELEFONO + ", " + ID_EMAIL + ", " + ID_SEXO + ", " + ID_DEPORTES + ", " 
-				+ ID_COCINA + ", " + ID_INFORMATICA + ") VALUES ('" + contacto.getNombre() + "', '" 
+				+ ID_COCINA + ", " + ID_INFORMATICA + ", " + ID_IMAGEN + ") VALUES ('" + contacto.getNombre() + "', '" 
 				+ contacto.getApellidos() + "', '" + contacto.getTelefono() + "', '" + contacto.getEmail() + "', '" 
-				+ contacto.getSexo() + "', '" + dep + "', '" + coc + "', '" + inf +  "')";
+				+ contacto.getSexo() + "', '" + dep + "', '" + coc + "', '" + inf +  "', '" + contacto.getImagen() +"')";
 		baseDatos.execSQL(sql);	
 	}
 	
@@ -108,7 +110,7 @@ public class ContactosSQLiteHelper extends SQLiteOpenHelper{
 		Boolean coc = (cursor.getInt(7) == 1)? true : false;
 		Boolean inf = (cursor.getInt(8) == 1)? true : false;
 		Contacto contacto = new Contacto(cursor.getString(1), cursor.getString(2), cursor.getString(3),
-				cursor.getString(4), cursor.getString(5).charAt(0), dep, coc, inf);
+				cursor.getString(4), cursor.getString(5).charAt(0), dep, coc, inf, cursor.getString(9));
 		cursor.close();
 		return contacto;
 	}
@@ -130,7 +132,7 @@ public class ContactosSQLiteHelper extends SQLiteOpenHelper{
 		
 		String sql = "UPDATE " + TABLA_NOMBRE +  " SET " + ID_NOMBRE + " = '" + contacto.getNombre() + "', " + ID_APELLIDOS + " = '" + contacto.getApellidos() + "', " 
 				+ ID_TELEFONO + " = '" + contacto.getTelefono() + "', " + ID_EMAIL + " = '" + contacto.getEmail() + "', " + ID_SEXO + " = '" + contacto.getSexo() + "', " 
-				+ ID_DEPORTES + " = " + dep + ", " + ID_COCINA + " = " + coc + ", " + ID_INFORMATICA + "=" + inf+ " WHERE " + ID_FILA + " = " + id + ";";
+				+ ID_DEPORTES + " = " + dep + ", " + ID_COCINA + " = " + coc + ", " + ID_INFORMATICA + "=" + inf+ ", " + ID_IMAGEN + " = '" + contacto.getImagen() +" WHERE " + ID_FILA + " = " + id + ";";
 		baseDatos.execSQL(sql);	
 	}
 		
