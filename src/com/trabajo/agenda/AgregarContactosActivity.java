@@ -1,24 +1,34 @@
 package com.trabajo.agenda;
 
+import java.io.File;
+
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 public class AgregarContactosActivity extends Activity {
 
+	private static int PICK_IMAGEN = 1;
+	
 	private EditText txtNombre, txtApellidos, txtTelefono, txtEmail;
 	private RadioGroup rdSexo;
 	private CheckBox chkDeportes, chkCocina, chkInformatica;
 	private Button btnAceptar, btnCancelar;
+	private ImageButton btnPerfil;
 	private ContactosSQLiteHelper bdConexion;
 	private int idActualizar;
 	private String imagen="";
@@ -39,6 +49,7 @@ public class AgregarContactosActivity extends Activity {
 		chkInformatica = (CheckBox) this.findViewById(R.id.chkInformatica);
 		btnAceptar = (Button)this.findViewById(R.id.btnAceptar);
 		btnCancelar = (Button)this.findViewById(R.id.btnCancelar);
+		btnPerfil = (ImageButton)this.findViewById(R.id.btnPerfil);
 			
 		//Base de datos
 		bdConexion = new ContactosSQLiteHelper(this);
@@ -64,7 +75,14 @@ public class AgregarContactosActivity extends Activity {
 			chkDeportes.setChecked(contacto.isDeportes());
 			chkCocina.setChecked(contacto.isCocina());
 			chkInformatica.setChecked(contacto.isInformatica());
+			imagen = contacto.getImagen();
 		}
+		//Imagen botón
+		Bitmap bitmap = getBitmap(imagen);
+		if(imagen.equals("") || bitmap==null)
+			btnPerfil.setImageResource(R.drawable.ic_add_imagen);
+		else
+			btnPerfil.setImageBitmap(getBitmap(imagen));
 		
 		
 		btnAceptar.setOnClickListener(new OnClickListener(){
@@ -101,8 +119,78 @@ public class AgregarContactosActivity extends Activity {
 	            finalizarActividad();
 			}
 		});
+		
+		btnPerfil.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				//Lanza actividad que muestra una lista de objetos a seleccionar para que el usuario elija uno de ellos
+				Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+				//Filtrado para las imágenes
+				intent.setType("image/*");
+				//Usamos esta porque tiene callback para indicar qué ha pasado en la actividad invocada (intent y requestCode)
+				startActivityForResult(intent, PICK_IMAGEN);
+				
+			}
+			
+		});
 	}
 	
+	
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		try {
+			if (requestCode == PICK_IMAGEN) {
+				if (resultCode == Activity.RESULT_OK) {
+					Uri selectedImage = data.getData();
+					imagen = getRuta(selectedImage);
+					Bitmap bitmap = getBitmap(imagen);
+
+					if (bitmap.getHeight() != 120 || bitmap.getWidth() != 120) {
+						bitmap = Bitmap.createScaledBitmap(
+								bitmap,
+								(bitmap.getHeight() != 120) ? 120 : bitmap
+										.getHeight(),
+								(bitmap.getWidth() != 120) ? 120 : bitmap
+										.getWidth(), true);
+						
+					} 
+					
+					btnPerfil.setImageBitmap(bitmap);
+				}
+			}
+		} catch (Exception e) {
+		}
+
+	}
+	
+	private Bitmap getBitmap(String imagen) {
+		File imagenArchivo = new File(imagen);
+		Bitmap bitmap = null;
+
+		if (imagenArchivo.exists()) {
+			bitmap = BitmapFactory.decodeFile(imagenArchivo.getAbsolutePath());
+			return bitmap;
+		}
+		return null;		
+	}
+
+
+	private String getRuta(Uri uri) {
+		String[] projection = { android.provider.MediaStore.Images.Media.DATA };
+		Cursor cursor = this.getContentResolver().query(uri, projection, null, null, null);
+		int columnIndex = cursor.getColumnIndex(projection[0]);
+		cursor.moveToFirst();
+		String ruta = cursor.getString(columnIndex);
+	    cursor.close();
+	    return ruta;
+	}
+
+
+
 	public void finalizarActividad(){
 		this.finish();
 	}

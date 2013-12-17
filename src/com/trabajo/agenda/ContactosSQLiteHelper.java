@@ -132,7 +132,7 @@ public class ContactosSQLiteHelper extends SQLiteOpenHelper{
 		
 		String sql = "UPDATE " + TABLA_NOMBRE +  " SET " + ID_NOMBRE + " = '" + contacto.getNombre() + "', " + ID_APELLIDOS + " = '" + contacto.getApellidos() + "', " 
 				+ ID_TELEFONO + " = '" + contacto.getTelefono() + "', " + ID_EMAIL + " = '" + contacto.getEmail() + "', " + ID_SEXO + " = '" + contacto.getSexo() + "', " 
-				+ ID_DEPORTES + " = " + dep + ", " + ID_COCINA + " = " + coc + ", " + ID_INFORMATICA + "=" + inf+ ", " + ID_IMAGEN + " = '" + contacto.getImagen() +" WHERE " + ID_FILA + " = " + id + ";";
+				+ ID_DEPORTES + " = " + dep + ", " + ID_COCINA + " = " + coc + ", " + ID_INFORMATICA + "=" + inf+ ", " + ID_IMAGEN + " = '" + contacto.getImagen() + "'" + " WHERE " + ID_FILA + " = " + id + ";";
 		baseDatos.execSQL(sql);	
 	}
 		

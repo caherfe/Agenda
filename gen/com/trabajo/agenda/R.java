@@ -43,10 +43,10 @@ public final class R {
     public static final class id {
         public static final int btnAceptar=0x7f08000b;
         public static final int btnCancelar=0x7f08000c;
+        public static final int btnPerfil=0x7f080000;
         public static final int chkCocina=0x7f080009;
         public static final int chkDeportes=0x7f080008;
         public static final int chkInformatica=0x7f08000a;
-        public static final int imageButton1=0x7f080000;
         public static final int ivImagen=0x7f08000d;
         public static final int ivSexo=0x7f08000e;
         public static final int lstContactos=0x7f080010;

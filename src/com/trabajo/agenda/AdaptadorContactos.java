@@ -1,8 +1,12 @@
 package com.trabajo.agenda;
 
+import java.io.File;
+
 import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,8 +46,25 @@ public class AdaptadorContactos extends SimpleCursorAdapter{
 		c.moveToPosition(position);
 		contenedor.tvNombre.setText(c.getString(1));
 		contenedor.tvApellidos.setText(c.getString(2));
-		contenedor.ivImagen.setImageResource(R.drawable.ic_profile);
+		String ruta = c.getString(c.getColumnIndex(ContactosSQLiteHelper.ID_IMAGEN));
+		Bitmap bitmap = getBitmap(ruta);
+		if(ruta.equals("") || bitmap==null)
+			contenedor.ivImagen.setImageResource(R.drawable.ic_profile);
+		else
+			contenedor.ivImagen.setImageBitmap(bitmap);
+			
 		return convertView;
+	}
+	
+	private Bitmap getBitmap(String imagen) {
+		File imagenArchivo = new File(imagen);
+		Bitmap bitmap = null;
+
+		if (imagenArchivo.exists()) {
+			bitmap = BitmapFactory.decodeFile(imagenArchivo.getAbsolutePath());
+			return bitmap;
+		}
+		return null;		
 	}
 
 }
