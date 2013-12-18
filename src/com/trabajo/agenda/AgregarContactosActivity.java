@@ -19,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class AgregarContactosActivity extends Activity {
 
@@ -89,25 +90,31 @@ public class AgregarContactosActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				char sexo;
-				if(rdSexo.getCheckedRadioButtonId()==R.id.rdHombre)
-					sexo = 'H';
-				else
-					sexo = 'M';
-				ContactosSQLiteHelper bdConexion = new ContactosSQLiteHelper(AgregarContactosActivity.this);
-				Contacto contacto = new Contacto(txtNombre.getText().toString(), txtApellidos.getText().toString(),
-						txtTelefono.getText().toString(), txtEmail.getText().toString(), sexo, chkDeportes.isChecked(), 
-						chkCocina.isChecked(), chkInformatica.isChecked(), imagen);
+				//Comprobamos que ningœn campo est‡ vac’o
+				if(txtNombre.getText().toString().equals("") || txtApellidos.getText().toString().equals("") || txtEmail.getText().toString().equals("") || txtTelefono.getText().toString().equals(""))
+					crearMensaje("Los campos de texto son obligatorios");
+				else{
+					char sexo;
+					if(rdSexo.getCheckedRadioButtonId()==R.id.rdHombre)
+						sexo = 'H';
+					else
+						sexo = 'M';
+					ContactosSQLiteHelper bdConexion = new ContactosSQLiteHelper(AgregarContactosActivity.this);
+					Contacto contacto = new Contacto(txtNombre.getText().toString(), txtApellidos.getText().toString(),
+							txtTelefono.getText().toString(), txtEmail.getText().toString(), sexo, chkDeportes.isChecked(), 
+							chkCocina.isChecked(), chkInformatica.isChecked(), imagen);
+					
+					bdConexion.abrirEscritura();
+					if(idActualizar!=0)
+						bdConexion.actualizarContacto(contacto, idActualizar);
+					else
+						bdConexion.insertarContacto(contacto);
+					bdConexion.cerrar();
+					Intent intent = new Intent(AgregarContactosActivity.this, MainActivity.class);
+		            startActivity(intent);
+		            finalizarActividad();
+				}
 				
-				bdConexion.abrirEscritura();
-				if(idActualizar!=0)
-					bdConexion.actualizarContacto(contacto, idActualizar);
-				else
-					bdConexion.insertarContacto(contacto);
-				bdConexion.cerrar();
-				Intent intent = new Intent(AgregarContactosActivity.this, MainActivity.class);
-	            startActivity(intent);
-	            finalizarActividad();
 			}
 		});
 		
@@ -178,6 +185,9 @@ public class AgregarContactosActivity extends Activity {
 	}
 
 
+	public void crearMensaje(String mensaje){
+		Toast.makeText(this.getApplicationContext(), mensaje, Toast.LENGTH_LONG).show();
+	}
 
 	public void finalizarActividad(){
 		this.finish();
